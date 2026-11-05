@@ -31,7 +31,7 @@
         <section class="panel" id="authPanel" hidden>
             <form id="loginForm" class="auth-form" hidden>
                 <h2>Iniciar sesión</h2>
-                <p class="hint">Las cuentas son por invitación. Si no tienes una, pídela a un administrador.</p>
+                <p class="hint">Solo para el personal de IEPROES.</p>
                 <label>Correo <input type="email" id="loginEmail" autocomplete="username" required></label>
                 <label>Contraseña <input type="password" id="loginPassword" autocomplete="current-password" required></label>
                 <div class="row">
@@ -41,8 +41,8 @@
                 <p class="msg" id="loginMsg" role="status"></p>
             </form>
             <form id="passwordForm" class="auth-form" hidden>
-                <h2 id="passwordTitle">Crea tu contraseña</h2>
-                <p class="hint" id="passwordHint">Elige una contraseña para entrar a las apps de IEPROES.</p>
+                <h2>Elige una contraseña nueva</h2>
+                <p class="hint">Escribe tu nueva contraseña para volver a entrar.</p>
                 <label>Nueva contraseña <input type="password" id="newPassword" autocomplete="new-password" minlength="8" required></label>
                 <label>Repítela <input type="password" id="newPassword2" autocomplete="new-password" minlength="8" required></label>
                 <div class="row"><button type="submit" class="btn primary" id="passwordBtn">Guardar contraseña</button></div>
@@ -66,25 +66,6 @@
                 <h2><i class="fas fa-user-shield"></i> Accesos</h2>
                 <p class="hint">Quién es parte del personal y a qué apps entra. Los cambios se guardan al instante.</p>
             </div>
-
-            <form id="inviteForm" class="invite">
-                <h3>Invitar a una persona</h3>
-                <div class="invite-grid">
-                    <label>Correo <input type="email" id="invEmail" required></label>
-                    <label>Nombre <input type="text" id="invNombre" maxlength="120" required></label>
-                    <label>Rol
-                        <select id="invRol">
-                            <option value="personal">Personal</option>
-                            <option value="admin">Administrador</option>
-                        </select>
-                    </label>
-                </div>
-                <div class="invite-apps" id="invApps"></div>
-                <div class="row">
-                    <button type="submit" class="btn primary" id="invBtn"><i class="fas fa-paper-plane"></i> Enviar invitación</button>
-                </div>
-                <p class="msg" id="invMsg" role="status"></p>
-            </form>
 
             <div class="table-wrap">
                 <table class="people">

@@ -1,6 +1,6 @@
 // Página principal de IEPROES.
 // El catálogo sale de public.apps: para mostrar una app nueva basta con agregar
-// su fila. Las cuentas son solo por invitación (no hay registro público).
+// su fila. No hay registro público: el personal ya tiene sus cuentas.
 
 const $ = id => document.getElementById(id);
 
@@ -32,7 +32,6 @@ function mensaje(id, texto, tipo = '') {
 function textoError(err) {
     const m = (err && err.message) || '';
     if (/invalid login credentials/i.test(m)) return 'Correo o contraseña incorrectos.';
-    if (/email not confirmed/i.test(m)) return 'Esa cuenta todavía no aceptó su invitación.';
     if (/password should be at least|weak/i.test(m)) return 'La contraseña es muy corta o débil (mínimo 8 caracteres).';
     if (/same.*password|different from the old/i.test(m)) return 'La nueva contraseña debe ser distinta a la anterior.';
     if (/rate limit|too many/i.test(m)) return 'Demasiados intentos. Espera un momento y vuelve a probar.';
@@ -117,15 +116,10 @@ function pintarSesion() {
     $('adminPanel').hidden = !Estado.esAdmin;
 }
 
-function pantallaContrasena(tipo) {
+function pantallaContrasena() {
     $('authPanel').hidden = false;
     $('loginForm').hidden = true;
     $('passwordForm').hidden = false;
-    const invitacion = tipo === 'invite';
-    $('passwordTitle').textContent = invitacion ? 'Bienvenido(a): crea tu contraseña' : 'Elige una contraseña nueva';
-    $('passwordHint').textContent = invitacion
-        ? 'Tu cuenta de IEPROES ya está creada. Elige una contraseña para entrar a las apps.'
-        : 'Escribe tu nueva contraseña para volver a entrar.';
     $('newPassword').focus();
 }
 
@@ -196,13 +190,13 @@ $('year').textContent = new Date().getFullYear();
 // ---------- Arranque ----------
 (async () => {
     await cargarApps();
-    if (ENLACE_TIPO === 'invite' || ENLACE_TIPO === 'recovery') {
+    if (ENLACE_TIPO === 'recovery') {
         // supabase-js abre la sesión con el token del enlace; luego se pide la contraseña.
         const { data: { session } } = await sb.auth.getSession();
         if (session) {
             await cargarUsuario(session).catch(() => {});
             pintarApps();
-            pantallaContrasena(ENLACE_TIPO);
+            pantallaContrasena();
             return;
         }
     }

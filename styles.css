@@ -133,12 +133,6 @@ a.app-card:hover, a.app-card:focus-visible { transform: translateY(-2px); box-sh
 .empty { color: var(--text-2); }
 
 /* ---------- Accesos ---------- */
-.invite { border: 1px dashed var(--border); border-radius: 10px; padding: 16px; margin-bottom: 18px; }
-.invite-grid { display: grid; grid-template-columns: 2fr 2fr 1fr; gap: 12px; margin-bottom: 12px; }
-.invite-apps { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: end; margin-bottom: 14px; }
-.invite-apps-title { width: 100%; font-size: 0.85rem; font-weight: 600; color: var(--text-2); }
-.app-pick { flex-direction: row; align-items: center; gap: 8px; font-weight: 500; color: var(--text); }
-
 .table-wrap { overflow-x: auto; }
 .people { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
 .people th { text-align: left; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-3); padding: 8px; border-bottom: 1px solid var(--border); white-space: nowrap; }
@@ -166,5 +160,4 @@ a.app-card:hover, a.app-card:focus-visible { transform: translateY(-2px); box-sh
 
 @media (max-width: 640px) {
     .session-user { display: none; }
-    .invite-grid { grid-template-columns: 1fr; }
 }

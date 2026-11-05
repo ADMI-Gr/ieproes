@@ -6,7 +6,7 @@
 const SUPABASE_URL = 'https://bjcszktjspyrwdfvmrhm.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_uLF8h4WgV0xBcXyMIxhnOg_76tWLIMQ';
 
-// Tipo de enlace de correo (invitación / recuperación). Se lee antes de crear
+// Tipo de enlace de correo (recuperación de contraseña). Se lee antes de crear
 // el cliente porque supabase-js limpia el hash al procesarlo.
 const ENLACE_TIPO = new URLSearchParams(location.hash.slice(1)).get('type');
 
