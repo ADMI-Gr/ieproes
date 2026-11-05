@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IEPROES · Apps</title>
+    <meta name="description" content="Apps del personal de IEPROES, Centro Regional San Miguel.">
+    <meta name="robots" content="noindex">
+    <link rel="icon" href="flor.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+</head>
+<body>
+    <header class="hero">
+        <nav class="topnav">
+            <span class="wordmark"><img src="flor.svg" alt="" class="flor"> IEPROES</span>
+            <div class="session" id="session" hidden>
+                <span class="session-user"><i class="fas fa-user-circle"></i> <span id="sessionName"></span></span>
+                <button type="button" class="link-btn" id="signOutBtn">Cerrar sesión</button>
+            </div>
+        </nav>
+        <div class="hero-body">
+            <h1>Apps IEPROES</h1>
+            <p class="tagline">Herramientas del personal del Centro Regional San Miguel. Una sola cuenta para todas.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Acceso: iniciar sesión / crear contraseña -->
+        <section class="panel" id="authPanel" hidden>
+            <form id="loginForm" class="auth-form" hidden>
+                <h2>Iniciar sesión</h2>
+                <p class="hint">Las cuentas son por invitación. Si no tienes una, pídela a un administrador.</p>
+                <label>Correo <input type="email" id="loginEmail" autocomplete="username" required></label>
+                <label>Contraseña <input type="password" id="loginPassword" autocomplete="current-password" required></label>
+                <div class="row">
+                    <button type="submit" class="btn primary" id="loginBtn">Entrar</button>
+                    <button type="button" class="btn ghost" id="forgotBtn">¿Olvidaste tu contraseña?</button>
+                </div>
+                <p class="msg" id="loginMsg" role="status"></p>
+            </form>
+            <form id="passwordForm" class="auth-form" hidden>
+                <h2 id="passwordTitle">Crea tu contraseña</h2>
+                <p class="hint" id="passwordHint">Elige una contraseña para entrar a las apps de IEPROES.</p>
+                <label>Nueva contraseña <input type="password" id="newPassword" autocomplete="new-password" minlength="8" required></label>
+                <label>Repítela <input type="password" id="newPassword2" autocomplete="new-password" minlength="8" required></label>
+                <div class="row"><button type="submit" class="btn primary" id="passwordBtn">Guardar contraseña</button></div>
+                <p class="msg" id="passwordMsg" role="status"></p>
+            </form>
+        </section>
+
+        <div class="section-head">
+            <h2>Apps</h2>
+            <p class="section-hint" id="sectionHint">Entra a cualquier app con tu cuenta de IEPROES.</p>
+        </div>
+        <div class="apps-grid" id="appsGrid" aria-busy="true">
+            <div class="app-card skeleton"></div>
+            <div class="app-card skeleton"></div>
+            <div class="app-card skeleton"></div>
+        </div>
+
+        <!-- Solo administradores -->
+        <section class="panel" id="adminPanel" hidden>
+            <div class="panel-head">
+                <h2><i class="fas fa-user-shield"></i> Accesos</h2>
+                <p class="hint">Quién es parte del personal y a qué apps entra. Los cambios se guardan al instante.</p>
+            </div>
+
+            <form id="inviteForm" class="invite">
+                <h3>Invitar a una persona</h3>
+                <div class="invite-grid">
+                    <label>Correo <input type="email" id="invEmail" required></label>
+                    <label>Nombre <input type="text" id="invNombre" maxlength="120" required></label>
+                    <label>Rol
+                        <select id="invRol">
+                            <option value="personal">Personal</option>
+                            <option value="admin">Administrador</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="invite-apps" id="invApps"></div>
+                <div class="row">
+                    <button type="submit" class="btn primary" id="invBtn"><i class="fas fa-paper-plane"></i> Enviar invitación</button>
+                </div>
+                <p class="msg" id="invMsg" role="status"></p>
+            </form>
+
+            <div class="table-wrap">
+                <table class="people">
+                    <thead id="peopleHead"></thead>
+                    <tbody id="peopleBody"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" hidden></div>
+
+    <footer class="footer">
+        <span>© <span id="year"></span> IEPROES · Centro Regional San Miguel</span>
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/accesos.js"></script>
+</body>
+</html>
